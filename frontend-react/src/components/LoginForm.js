@@ -12,7 +12,7 @@ function LoginForm({ onLoginSuccess, switchToSignup }) {
     e.preventDefault();
     setError(null);
     try {
-      const res = await axios.post('http://localhost:3001/api/auth/login', { email, password });
+      const res = await axios.post('https://student-placement-prediction-v4oc.onrender.com/api/auth/login', { email, password });
       if (res.status === 200) {
         setSuccessMessage('Login successful!');
         onLoginSuccess(res.data.username);

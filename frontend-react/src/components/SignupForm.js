@@ -13,7 +13,7 @@ function SignupForm({ onSignupSuccess, switchToLogin }) {
     e.preventDefault();
     setError(null);
     try {
-      const res = await axios.post('http://localhost:3001/api/auth/signup', { username, email, password });
+      const res = await axios.post('https://student-placement-prediction-v4oc.onrender.com/api/auth/signup', { username, email, password });
       if (res.status === 201) {
         setSuccessMessage('Signup successful!');
         onSignupSuccess();

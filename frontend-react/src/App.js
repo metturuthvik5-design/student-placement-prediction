@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import NotificationPopup from './components/NotificationPopup';
@@ -15,7 +14,7 @@ function App() {
     'Workshops/Certifications': '',
     AptitudeTestScore: '',
     SoftSkillsRating: '',
-    ExtracurricularActivities:'',
+    ExtracurricularActivities: '',
     PlacementTraining: '',
     SSC_Marks: '',
     HSC_Marks: ''
@@ -23,7 +22,7 @@ function App() {
 
   const [prediction, setPrediction] = useState(null);
   const [authUser, setAuthUser] = useState(null);
-  const [showLogin, setShowLogin] = useState(true); // true: show login, false: show signup
+  const [showLogin, setShowLogin] = useState(true);
   const [notificationMessage, setNotificationMessage] = useState(null);
 
   const handleChange = e => {
@@ -33,8 +32,6 @@ function App() {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
-    // Validation: no empty or negative values
     for (const key in form) {
       if (form[key] === '' || form[key] === null || form[key] === undefined) {
         setNotificationMessage(`Please fill in the ${key} field.`);
@@ -45,9 +42,8 @@ function App() {
         return;
       }
     }
-
     try {
-      const res = await fetch('http://localhost:5000/predict', {
+      const res = await fetch('https://student-placement-flask.onrender.com/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -88,7 +84,6 @@ function App() {
         )
       ) : (
         <>
-          {/* Navbar */}
           <nav style={{
             display: 'flex',
             alignItems: 'center',
@@ -114,21 +109,13 @@ function App() {
             </div>
           </nav>
 
-          {/* Marquee */}
-          <style>
-            {`
-              @keyframes marquee {
-                0% { transform: translateX(100%); }
-                100% { transform: translateX(-100%); }
-              }
-            `}
-          </style>
-          <div style={{
-            overflow: 'hidden',
-            backgroundColor: 'add#e0e0e0',
-            padding: '10px 0',
-            marginBottom: '20px'
-          }}>
+          <style>{`
+            @keyframes marquee {
+              0% { transform: translateX(100%); }
+              100% { transform: translateX(-100%); }
+            }
+          `}</style>
+          <div style={{ overflow: 'hidden', backgroundColor: '#e0e0e0', padding: '10px 0', marginBottom: '20px' }}>
             <div style={{
               whiteSpace: 'nowrap',
               display: 'inline-block',
@@ -141,7 +128,6 @@ function App() {
             </div>
           </div>
 
-          {/* Form */}
           <div style={{
             maxWidth: '1000px',
             margin: '0 auto',
@@ -152,11 +138,7 @@ function App() {
             boxShadow: '0 0 20px rgba(0,0,0,0.1)'
           }}>
             <form onSubmit={handleSubmit}>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-                gap: '20px'
-              }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px' }}>
                 {Object.keys(form).map(key => (
                   <div key={key} style={{ display: 'flex', flexDirection: 'column' }}>
                     <label style={{ marginBottom: '6px', fontWeight: '600' }}>{key}</label>
@@ -166,18 +148,11 @@ function App() {
                       value={form[key]}
                       onChange={handleChange}
                       step="any"
-                      style={{
-                        padding: '10px',
-                        borderRadius: '6px',
-                        border: '1px solid #ccc',
-                        backgroundColor: '#00509e',
-                        color: 'white'
-                      }}
+                      style={{ padding: '10px', borderRadius: '6px', border: '1px solid #ccc', backgroundColor: '#00509e', color: 'white' }}
                     />
                   </div>
                 ))}
               </div>
-
               <div style={{ textAlign: 'center', marginTop: '30px' }}>
                 <button type="submit" style={{
                   backgroundColor: '#007bff',
@@ -187,19 +162,13 @@ function App() {
                   borderRadius: '8px',
                   cursor: 'pointer',
                   border: 'none'
-                }}>
-                  Predict
-                </button>
+                }}>Predict</button>
               </div>
             </form>
           </div>
 
-          {/* Prediction Result */}
           {prediction && (
-            <div style={{
-              marginTop: '30px',
-              textAlign: 'center'
-            }}>
+            <div style={{ marginTop: '30px', textAlign: 'center' }}>
               <div style={{
                 display: 'inline-block',
                 padding: '20px',
@@ -214,34 +183,23 @@ function App() {
               </div>
             </div>
           )}
+
           <footer className="footer" id="about-us">
             <div className="">
               <div className="row">
                 <div className="footer-col"><h4 id="footer-name">Company</h4>
                   <ul>
                     <li><a href="#">About Us</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">About Us</a></li>
                   </ul>
                 </div>
                 <div className="footer-col"><h4 id="footer-name">Get Help</h4>
                   <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">FAQ</a></li>
                     <li><a href="#">FAQ</a></li>
                   </ul>
                 </div>
                 <div className="footer-col"><h4 id="footer-name">Online Predictions</h4>
                   <ul>
                     <li><a href="#">Accurate</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">FAQ</a></li>
                   </ul>
                 </div>
                 <div className="footer-col"><h4 id="footer-name">Follow Us</h4>

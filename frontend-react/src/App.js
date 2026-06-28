@@ -43,7 +43,7 @@ function App() {
       }
     }
     try {
-      const res = await fetch('https://student-placement-flask.onrender.com/predict', {
+      const res = await fetch(`${process.env.REACT_APP_FLASK_URL}/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -188,19 +188,13 @@ function App() {
             <div className="">
               <div className="row">
                 <div className="footer-col"><h4 id="footer-name">Company</h4>
-                  <ul>
-                    <li><a href="#">About Us</a></li>
-                  </ul>
+                  <ul><li><a href="#">About Us</a></li></ul>
                 </div>
                 <div className="footer-col"><h4 id="footer-name">Get Help</h4>
-                  <ul>
-                    <li><a href="#">FAQ</a></li>
-                  </ul>
+                  <ul><li><a href="#">FAQ</a></li></ul>
                 </div>
                 <div className="footer-col"><h4 id="footer-name">Online Predictions</h4>
-                  <ul>
-                    <li><a href="#">Accurate</a></li>
-                  </ul>
+                  <ul><li><a href="#">Accurate</a></li></ul>
                 </div>
                 <div className="footer-col"><h4 id="footer-name">Follow Us</h4>
                   <div className="social-links">

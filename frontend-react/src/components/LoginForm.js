@@ -12,7 +12,7 @@ function LoginForm({ onLoginSuccess, switchToSignup }) {
     e.preventDefault();
     setError(null);
     try {
-      const res = await axios.post('https://student-placement-prediction-v4oc.onrender.com/api/auth/login', { email, password });
+      const res = await axios.post(`${process.env.REACT_APP_NODE_URL}/api/auth/login`, { email, password });
       if (res.status === 200) {
         setSuccessMessage('Login successful!');
         onLoginSuccess(res.data.username);
@@ -43,14 +43,7 @@ function LoginForm({ onLoginSuccess, switchToSignup }) {
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
-              style={{
-                width: '100%',
-                padding: '10px',
-                borderRadius: '8px',
-                border: '1px solid #ccc',
-                fontSize: '16px',
-                boxSizing: 'border-box'
-              }}
+              style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc', fontSize: '16px', boxSizing: 'border-box' }}
             />
           </div>
           <div style={{ marginBottom: '18px' }}>
@@ -60,30 +53,13 @@ function LoginForm({ onLoginSuccess, switchToSignup }) {
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
-              style={{
-                width: '100%',
-                padding: '10px',
-                borderRadius: '8px',
-                border: '1px solid #ccc',
-                fontSize: '16px',
-                boxSizing: 'border-box'
-              }}
+              style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc', fontSize: '16px', boxSizing: 'border-box' }}
             />
           </div>
           {error && <div style={{ color: 'red', marginBottom: '18px', textAlign: 'center' }}>{error}</div>}
           <button
             type="submit"
-            style={{
-              width: '100%',
-              padding: '12px',
-              backgroundColor: '#007bff',
-              color: 'white',
-              fontSize: '18px',
-              border: 'none',
-              borderRadius: '10px',
-              cursor: 'pointer',
-              transition: 'background-color 0.3s ease'
-            }}
+            style={{ width: '100%', padding: '12px', backgroundColor: '#007bff', color: 'white', fontSize: '18px', border: 'none', borderRadius: '10px', cursor: 'pointer' }}
             onMouseOver={e => (e.currentTarget.style.backgroundColor = '#0056b3')}
             onMouseOut={e => (e.currentTarget.style.backgroundColor = '#007bff')}
           >
@@ -92,17 +68,7 @@ function LoginForm({ onLoginSuccess, switchToSignup }) {
         </form>
         <p style={{ marginTop: '20px', textAlign: 'center', color: '#666' }}>
           Don't have an account?{' '}
-          <button
-            onClick={switchToSignup}
-            style={{
-              color: '#007bff',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
-              fontWeight: '600'
-            }}
-          >
+          <button onClick={switchToSignup} style={{ color: '#007bff', background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontWeight: '600' }}>
             Sign up here
           </button>
         </p>

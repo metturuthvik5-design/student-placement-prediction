@@ -20,7 +20,14 @@ const app = express();
 /* ---------------- Middleware ---------------- */
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: [
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:3002",
+        "http://localhost:3003",
+        "https://student-placement-prediction-gqjvu6q5t.vercel.app",
+        "https://student-placement-prediction-rose.vercel.app"
+    ],
     credentials: true
 }));
 
